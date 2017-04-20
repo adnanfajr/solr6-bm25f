@@ -264,16 +264,15 @@ public class BM25FBooleanTermQuery extends Query {
         return term;
     }
 
-    @Override
-    public Weight createWeight(IndexSearcher searcher, boolean needsScores)
+    public Weight createWeight(IndexSearcher searcher)
             throws IOException {
-        // if (term.field().equals(bm25fParams.getMainField())) {
+         if (term.field().equals(bm25fParams.getMainField())) {
         fields = bm25fParams.getFields();
-// }
+ }
 
-// else {
-// fields = new String[] { term.field() };
-// }
+ else {
+ fields = new String[] { term.field() };
+ }
 
         final IndexReaderContext context = searcher.getTopReaderContext();
         final TermContext termState;
